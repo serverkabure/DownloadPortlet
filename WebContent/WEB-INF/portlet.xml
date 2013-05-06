@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	version="2.0">
+
+	<portlet>
+		<portlet-name>DownloadPortlet</portlet-name>
+
+		<portlet-class>downloadportlet.MyDownloadPortlet</portlet-class>
+
+		<expiration-cache>0</expiration-cache>
+
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+
+		<portlet-info>
+			<title>DownloadPortlet</title>
+			<short-title>DownloadPortlet</short-title>
+			<keywords>DownloadPortlet</keywords>
+		</portlet-info>
+
+	</portlet>
+</portlet-app>
+
+
