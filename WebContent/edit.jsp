@@ -10,8 +10,9 @@
 		現在のディレクトリパス:<br />${logpath}
 	</p>
 	<p>
-		新しいディレクトリパス: <br /> <input type="radio" name="prefix" value="path" />ファイルパス<input
-			type="radio" name="prefix" value="env" />環境変数<br /> <input
-			type="text" name="logpath" style="width: 200px;" />
+		新しいディレクトリパス: <br /> <input type="radio" name="prefix" value="path"
+			checked="checked" />ファイルパス<input type="radio" name="prefix"
+			value="env" />環境変数<br /> <input type="text" name="logpath"
+			style="width: 200px;" />
 	</p>
 </form>

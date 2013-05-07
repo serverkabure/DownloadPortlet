@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -66,6 +67,13 @@ public class MyDownloadPortlet extends GenericPortlet {
 	@Override
 	protected void doHelp(RenderRequest request, RenderResponse response)
 			throws PortletException, IOException {
+		// 環境変数を取得する
+		Map<String, String> map = System.getenv();
+		List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(
+				map.entrySet());
+		request.setAttribute("map", map);
+		request.setAttribute("list", list);
+		//
 		response.setContentType(request.getResponseContentType());
 		PortletRequestDispatcher dispatcher = this.getPortletContext()
 				.getRequestDispatcher(helpPage);
