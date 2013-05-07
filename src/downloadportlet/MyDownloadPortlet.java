@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.GenericPortlet;
 import javax.portlet.PortletException;
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -27,7 +30,8 @@ public class MyDownloadPortlet extends GenericPortlet {
 	@Override
 	protected void doView(RenderRequest request, RenderResponse response)
 			throws PortletException, IOException {
-		String logpath = System.getenv("OPENSHIFT_JBOSSAS_LOG_DIR");
+		String logpath = request.getPreferences().getValue("logpath",
+				System.getenv("OPENSHIFT_JBOSSAS_LOG_DIR"));
 		request.setAttribute("logpath", logpath);
 		File logdir = new File(logpath);
 		File[] files = logdir.listFiles();
@@ -49,6 +53,10 @@ public class MyDownloadPortlet extends GenericPortlet {
 	@Override
 	protected void doEdit(RenderRequest request, RenderResponse response)
 			throws PortletException, IOException {
+		String logpath = request.getPreferences().getValue("logpath",
+				System.getenv("OPENSHIFT_JBOSSAS_LOG_DIR"));
+		request.setAttribute("logpath", logpath);
+		//
 		response.setContentType(request.getResponseContentType());
 		PortletRequestDispatcher dispatcher = this.getPortletContext()
 				.getRequestDispatcher(editPage);
@@ -62,6 +70,19 @@ public class MyDownloadPortlet extends GenericPortlet {
 		PortletRequestDispatcher dispatcher = this.getPortletContext()
 				.getRequestDispatcher(helpPage);
 		dispatcher.include(request, response);
+	}
+
+	@Override
+	public void processAction(ActionRequest request, ActionResponse response)
+			throws PortletException, IOException {
+		String prefix = request.getParameter("prefix");
+		String logpath = request.getParameter("logpath");
+		PortletPreferences prefs = request.getPreferences();
+		if (prefix.equals("path"))
+			prefs.setValue("logpath", logpath);
+		if (prefix.equals("env"))
+			prefs.setValue("logpath", System.getenv(logpath));
+		prefs.store();
 	}
 
 	@Override

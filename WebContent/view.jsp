@@ -4,7 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <portlet:defineObjects />
 <form>
-	<p>ログファイルパス: ${logpath}</p>
+	<p>
+		ログディレクトリパス:<br />${logpath}
+	</p>
 	<table>
 		<c:forEach var="fileObject" items="${fileObjects}">
 			<tr>
