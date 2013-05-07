@@ -69,10 +69,11 @@ public class MyDownloadPortlet extends GenericPortlet {
 			throws PortletException, IOException {
 		// 環境変数を取得する
 		Map<String, String> map = System.getenv();
-		List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(
-				map.entrySet());
 		request.setAttribute("map", map);
-		request.setAttribute("list", list);
+		// List<Map.Entry<String, String>> list = new
+		// ArrayList<Map.Entry<String, String>>(
+		// map.entrySet());
+		// request.setAttribute("list", list);
 		//
 		response.setContentType(request.getResponseContentType());
 		PortletRequestDispatcher dispatcher = this.getPortletContext()
